@@ -11,10 +11,10 @@
 #define Y 4
 
 //Enumeration qui cree un type joueur ou Ia
-typedef enum State_board_case
+typedef enum Symbol
 {
-    IA, JOUEUR, VIDE
-}State;
+    ROND, CROIX, VIDE
+}Symbol, *P_symbol;
 
 //Structure qui represente le plateau de jeu
 typedef struct Game_board
