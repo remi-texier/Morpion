@@ -29,7 +29,7 @@ typedef struct Game_board
     int x, y;
     State Owner;
     int evaluation;
-    P_neightbour P_neightbour;
+    P_neightbour P_array_neightbour;
 }Game_board, *P_game_board;
 
 //Structure qui represente tous les pions de l'IA
