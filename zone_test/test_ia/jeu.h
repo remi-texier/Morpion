@@ -11,46 +11,40 @@
 #define Y 4
 
 //Enumeration qui cree un type joueur ou Ia
-typedef enum Symbol
+typedef struct Symbol
 {
-    ROND, CROIX, VIDE
+    char symbol;
 }Symbol, *P_symbol;
 
 //Structure qui represente une case voisine
 typedef struct neightbour
 {
-    int x;
-    int y;
+    char x;
+    char y;
 }Neightbour, *P_neightbour;
 
 //Structure qui represente une case du plateau de jeu
-typedef struct Game_board
+typedef struct Cell
 {
-    int x, y;
-    State Owner;
-    int evaluation;
-    P_neightbour P_array_neightbour;
-}Game_board, *P_game_board;
+    Symbol Owner;
+    char x;
+    char y;
+    float evaluation;
+    P_neightbour P_arr_neightbour;
+}Cell, *P_cell;
 
 //Structure qui represente une case appartenant a un ia
-typedef struct Ia_army
+typedef struct Symbol_tokens
 {
     int x, y;
     int evaluation;
-}Ia_army, *P_Ia_army;
-
-//Structure qui represente une case appartenant à un joueur
-typedef struct Player_army
-{
-    int x, y;
-    int evaluation;
-}Player_army, *P_player_army;
+}Symbol_tokens, *P_symbol_tokens;
 
 //Structure qui represente les données à manipuler pour gerer le plateau de jeu
 typedef struct Data_board
-{
-    Game_board Board[X][Y];
-    P_Ia_army P_board_ia;//Allouer dynamiquement
-    P_player_army P_board_player;//Allouer dynamiquement
-}Data_board, *P_data_board;
+// {
+//     Game_board Board[X][Y];
+//     P_Ia_army P_board_ia;//Allouer dynamiquement
+//     P_player_army P_board_player;//Allouer dynamiquement
+// }Data_board, *P_data_board;
 #endif
