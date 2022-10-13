@@ -1,21 +1,22 @@
 #include "jeu.h"
 
-// int get_possibilities(int** board, vec dir) {
-//     int possibilities = 0;
-//     for (int i = 0; i < COMBO_LENGHT; i++) {
-//         if ;
-//     }
-//     return possibilities;
-// }
+//Soit on laisse cette fonction comme ça, soit on fait un type enum avec les 4 vec puis un for dans la fonction
+//je trouve la première solution plus simple et claire, même si elle est moins "propre"
+int get_cross(int** board, int x, int y, Symbol joueur) {
+    int i = 0;
+    i += get_full_line(board, x, y, joueur, [0, 1], joueur);
+    i += get_full_line(board, x, y, joueur, [1, 0], joueur);
+    i += get_full_line(board, x, y, joueur, [1,-1], joueur);
+    i += get_full_line(board, x, y, joueur, [1, 1], joueur);
+}
 
 //fonction qui fait la somme des resultat des get_nuplet, pour toute une ligne
 int get_full_line(int** board, int x, int y, Vec dir, Symbol joueur) {
     int result = 0;
-    for (int i=0; i<COMBO_LENGHT; i--) {
+    for (int i=0; i>-COMBO_LENGHT; i--) {
         result += get_nuplet(board, x, y, dir, joueur);
-        //pas sûr de ça faut que je vérifie
-        x += dir.x;
-        y += dir.y;
+        x -= dir.x;
+        y -= dir.y;
     }
     return result;
 }
@@ -35,4 +36,3 @@ int get_nuplet(int** board, int x, int y, Vec dir, Symbol joueur) {
     return num_symbols;
 }
 
-//
