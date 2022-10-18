@@ -10,6 +10,7 @@
 //Macro pour predefinir la taille du tableau qui se fera avec le preprocesseur
 #define X 4
 #define Y 4
+#define NB_PLAYER 2
 
 //Structure qui represente une case voisine
 typedef struct neightbour
