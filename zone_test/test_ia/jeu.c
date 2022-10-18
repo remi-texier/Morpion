@@ -11,11 +11,10 @@
 //fonction qui fait la somme des resultat des get_nuplet, pour toute une ligne
 int get_full_line(int** board, int x, int y, Vec dir, Symbol joueur) {
     int result = 0;
-    for (int i=0; i<COMBO_LENGHT; i--) {
+    for (int i=0; i>-COMBO_LENGHT; i--) {
         result += get_nuplet(board, x, y, dir, joueur);
-        //pas sûr de ça faut que je vérifie
-        x += dir.x;
-        y += dir.y;
+        x -= dir.x;
+        y -= dir.y;
     }
     return result;
 }

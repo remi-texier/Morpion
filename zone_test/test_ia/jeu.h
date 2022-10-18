@@ -21,7 +21,7 @@ typedef struct neightbour
 }Neightbour, *P_neightbour;
 
 //Structure qui represente une case du plateau de jeu
-typedef struct Game_board
+typedef struct Cell
 {
     int x, y;
     unsigned char owner;
