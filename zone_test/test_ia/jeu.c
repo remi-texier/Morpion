@@ -1,5 +1,5 @@
 #include "jeu.h"
-
+/*
 // int get_possibilities(int** board, vec dir) {
 //     int possibilities = 0;
 //     for (int i = 0; i < COMBO_LENGHT; i++) {
@@ -34,5 +34,5 @@ int get_nuplet(int** board, int x, int y, Vec dir, Symbol joueur) {
     }
     return num_symbols;
 }
-
+*/
 //

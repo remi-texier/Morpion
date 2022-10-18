@@ -48,7 +48,7 @@ typedef struct Player_army
 typedef struct Data_board
 {
     Game_board Board[X][Y];
-    P_player_army P_array_player_army;//Tableau à X (joueur1, joueur2... dans un ordre connu à l'avance) et Y dimensions (allocation dynamique en un seule bloc avec des realloc à chaque tour), x -> nb joueur(exemple : x[0] -> joueur 1 et à un tour x, il possede n pions sur le plateau y[0] -> infos pions numero 1), y -> nb de pions utilise par un joueur( + 1 à chaque tour pour tout les joueurs puisqu'ils joueront forcement un pion(meme nombre de pion pour tout les joueurs))
+    P_player_army P_array_player_army;//Tableau à X (joueur1, joueur2... dans un ordre connu à l'avance) et Y dimensions (allocation dynamique en un seule bloc avec des realloc à chaque tour), x -> nb joueur(exemple : x[0] -> joueur 1 et à un tour x, il possede n pions sur le plateau y[0] -> infos pions numero 1 à mettre en corelation avec tableau de la map complete), y -> nb de pions utilise par un joueur( + 1 à chaque tour pour tout les joueurs puisqu'ils joueront forcement un pion(meme nombre de pion pour tout les joueurs))
     char *p_array_owner; // tableau de char qui representera plusierus charactere qu'on associera à un joueur
 }Data_board, *P_data_board;
 #endif
