@@ -8,5 +8,7 @@ Les options de jeu à appliquer seront :
  
 -Extension à plus de deux joueurs : pris en compte mais brider car l'ia n est pas encore adapté pour cette extension (a developper)
 
+-L'algorithme de l'ia fonctionne mais la fonction d evaluation experimental n'est pour l instant pas probante donc elle sera a dvp
+
 -compilation : gcc -Wall -Wextra -pedantic -std=c99 -o main *.c
  execution : .\main.exe
