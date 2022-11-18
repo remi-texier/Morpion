@@ -691,7 +691,7 @@ void play_turn(const P_data_board const p_data_board, const int n_tuplet)
 
                     //On verifie si il y a un gagnant
                     char winner = check_n_tuplet(p_data_board, n_tuplet);
-                    printf("\nwinner = %c", winner);
+                    //printf("\nwinner = %c", winner);
                     if(winner != '0')
                     {
                         printf("Le joueur %c a gagne la partie\n", winner);
@@ -726,7 +726,7 @@ void play_turn(const P_data_board const p_data_board, const int n_tuplet)
 
                     //On verifie si il y a un gagnant
                     char winner = check_n_tuplet(p_data_board, n_tuplet);
-                    printf("\nwinner = %c", winner);
+                    //printf("\nwinner = %c", winner);
                     if(winner != '0')
                     {
                         printf("Le joueur %c a gagne la partie\n", winner);
