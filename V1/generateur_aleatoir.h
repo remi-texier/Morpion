@@ -1,6 +1,10 @@
 #ifndef GENERATEUR_ALEATOIR_H
 #define GENERATEUR_ALEATOIR_H
 
+//-------------------------------------IMPORTANTE-------------------------------------
+//Cette class a ete utlise et sera utlise par la suite pour ameliorer l algo Alpha beta
+//-----------------------------------------------------------------------------------
+
 //Vérification du compteur
 void checkSeed();
  
