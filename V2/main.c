@@ -1,5 +1,5 @@
 #include "jeu.h"
-#include "test.h"
+//#include "test.h"
 #include "ia.h"
 #define JOUEUR 2
 
