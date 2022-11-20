@@ -120,7 +120,7 @@ void test_function_n_tuple_free_case(const P_data_board const P_data)
 
     //Test de la fonction n_tuple
     printf("---------------Test de la fonction n_tuple-------------------\n");
-    char nb_tuple = check_n_tuplet(P_data, 2);
+    char nb_tuple = check_n_tuplet(P_data, 3);
     printf("\n");
     if(nb_tuple =='0')
     {

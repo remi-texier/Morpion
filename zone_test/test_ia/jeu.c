@@ -514,6 +514,8 @@ char check_n_tuplet(const P_data_board const p_data_board, const int n)
 {
     int save_x = 0;
     int save_y = 0;
+    int alt_x = 0;
+    int alt_y = 0;
     char save_owner = ' ';
 
     if(n < 0)
@@ -549,21 +551,30 @@ char check_n_tuplet(const P_data_board const p_data_board, const int n)
                     for(int l = 0; l < n; l++)
                     {
                         bool check = p_data_board->Board[save_x][save_y].owner == save_owner;
+
                         if(check)
                         {
+                            if(l == n - 1)
+                            {
+                                return save_owner;
+                            }
+
                             if(p_data_board->Board[save_x][save_y].P_array_neightbour[k].x != -1 && p_data_board->Board[save_x][save_y].P_array_neightbour[k].y != -1)
                             {
-                                save_x = p_data_board->Board[save_x][save_y].P_array_neightbour[k].x;
-                                save_y = p_data_board->Board[save_x][save_y].P_array_neightbour[k].y;
+                               
+                                alt_x = p_data_board->Board[save_x][save_y].P_array_neightbour[k].x;
+                                alt_y = p_data_board->Board[save_x][save_y].P_array_neightbour[k].y;
+                                save_x = alt_x;
+                                save_y = alt_y;
                             }
                             else
                             {
                                 break;
                             }
                         }
-                        if(l == n - 1 && check)
+                        else
                         {
-                            return save_owner;
+                            break;
                         }
                     }
                 }
@@ -719,14 +730,14 @@ void play_turn(const P_data_board const p_data_board, const int n_tuplet)
                     //print_board_game(p_data_board);
 
                     //Appel fonction dermination coup IA
-                    calcIA(p_data_board, 3, n_tuplet, owner);
+                    calcIA(p_data_board, 4, n_tuplet, owner);
 
                     //On affiche le plateau de jeu
                     print_board_game(p_data_board);
 
                     //On verifie si il y a un gagnant
                     char winner = check_n_tuplet(p_data_board, n_tuplet);
-                    printf("\nwinner = %c", winner);
+                    printf("\nwinner (pro :%c) = %c\n", owner,  winner);
                     if(winner != '0')
                     {
                         printf("Le joueur %c a gagne la partie\n", winner);
@@ -918,7 +929,7 @@ void loop_game()
 
     //On demande le nombre de pion a aligner pour gagner//cas 2 err
     int nb_pion_aligner = 0;
-    const int min_nb_pion_aligner = 3;
+    const int min_nb_pion_aligner = 2;
     const int max_nb_pion_aligner = X;
 
     while (1)

@@ -31,6 +31,9 @@ void calcIA(P_data_board p_data_board, int prof, int n_tuple, char player)
                     //On simule qu'on joue cette case
                     bool test = update_data_board(p_data_board, i, j, player);
 
+                    // test
+                    //printf("------------coupmax : %d / %d --- ", i, j);
+
                     //On appelle la fonction calcMin pour lancer l'IA
                     tmp = calcMin(p_data_board, prof-1, n_tuple, alpha, beta);
 
@@ -64,6 +67,7 @@ int calcMin(P_data_board p_data_board, int prof, int n_tuple, int alpha, int bet
     if(prof == 0)
     {
         tmp = evalue(p_data_board, n_tuple);
+        //printf("\nevaluemin prof %d : %d\n", prof, tmp);
         return tmp;
     }
 
@@ -71,6 +75,7 @@ int calcMin(P_data_board p_data_board, int prof, int n_tuple, int alpha, int bet
     if(check_free_case(p_data_board) == false || check_n_tuplet(p_data_board, n_tuple) != '0')
     {
         tmp = evalue(p_data_board, n_tuple);
+        //printf("\nevaluemin prof 1 : %d\n", tmp);
         return tmp;
     }
 
@@ -84,7 +89,10 @@ int calcMin(P_data_board p_data_board, int prof, int n_tuple, int alpha, int bet
                 //printf("\ncoupsfree calcmin : %d / %d\n", i, j);
 
                 //On simule qu'on joue cette case
-                bool test = update_data_board(p_data_board, i, j, courant_player);
+                bool test = update_data_board(p_data_board, i, j, 'A');
+
+                //printf("coupmin : %d / %d --- ", i, j);
+
 
                 //On appelle la fonction calcMax pour lancer l'IA
                 tmp = calcMax(p_data_board, prof-1, n_tuple, alpha, beta);
@@ -116,6 +124,8 @@ int calcMax(P_data_board p_data_board, int prof, int n_tuple, int alpha, int bet
     if(prof == 0)
     {
         tmp = evalue(p_data_board, n_tuple);
+
+        //printf("\nevaluemax prof %d : %d\n", prof, tmp);
         return tmp;
     }
 
@@ -123,6 +133,7 @@ int calcMax(P_data_board p_data_board, int prof, int n_tuple, int alpha, int bet
     if(check_free_case(p_data_board) == false || check_n_tuplet(p_data_board, n_tuple) != '0')
     {
         tmp = evalue(p_data_board, n_tuple);
+        //printf("\nevaluemax prof 1 : %d\n", tmp);
         return tmp;
     }
 
@@ -136,8 +147,11 @@ int calcMax(P_data_board p_data_board, int prof, int n_tuple, int alpha, int bet
                 //On simule qu'on joue cette case
                 bool test = update_data_board(p_data_board, i, j, courant_player);
 
+                //printf("coupmax : %d / %d --- ", i, j);
+
+
                 //On appelle la fonction calcMax pour lancer l'IA
-                tmp = calcMax(p_data_board, prof-1, n_tuple, alpha, beta);
+                tmp = calcMin(p_data_board, prof-1, n_tuple, alpha, beta);
 
                 //On annule le coup
                 to_cancel_move(p_data_board, i, j);
@@ -185,9 +199,12 @@ int evalue(const P_data_board const p_data_board, int n_tuplet)
     int score = 0;
     int cntpion = 0;
     int cntjoueur = 0;
-    int x = 0;
+    /*int x = 0;
     int y = 0;
-    int save_y = 0;
+    int save_y = 0;*/
+
+    //print_board_game(p_data_board);
+    //printf("check n_tuplet : %c\n", check_n_tuplet(p_data_board, n_tuplet));
 
     //Si le jeu est fini (plus de case libre)
     if(check_n_tuplet(p_data_board, n_tuplet) != '0' || check_free_case(p_data_board) !=  true)
@@ -195,23 +212,93 @@ int evalue(const P_data_board const p_data_board, int n_tuplet)
         //Si l'IA a gagné, on retourne 1000 - le nombre de pions
         if(check_n_tuplet(p_data_board, n_tuplet) == courant_player)
         {
+            //printf("\nIA a gagné\n");
             return 1000-comptePions(p_data_board);
         }
         else if(check_n_tuplet(p_data_board, n_tuplet) == '0')
         {
+            //printf("\nMatch nul\n");
             //Egalite -> on retourne 0
             return 0;
         }
         else
         {
+            //printf("\nIA a perdu\n");
             //Si l'IA a perdu, on retourne -1000 + le nombre de pions
             return -1000+comptePions(p_data_board);
         }
     }
-    
-    //On parcourt chaque case du plateau et on parcour chaque direction sur un n-tuplet
+
+    // Deuxieme phase
+    int save_x = 0;
+    int save_y = 0;
+    int x_inter = 0;
+    int y_inter = 0;
+
     //Parcour le plateau de jeu pour verifier si il y a un gagnant
     for(int i = 0; i < X; i++)
+    {
+        for(int j = 0; j < Y; j++)
+        {
+            //On verifie si la case est vide
+            if(p_data_board->Board[i][j].owner == 48)
+            {
+                continue;
+            }
+            else
+            {
+                for(int k = 0; k < 8; k++)
+                {
+                    save_x = i;
+                    save_y = j;
+                    cntpion = 0;
+                    cntjoueur = 0;
+                    for(int l = 0; l < n_tuplet; l++)
+                    {
+                        bool check = p_data_board->Board[save_x][save_y].owner != '0';
+                        if(check == true)
+                        {
+                            cntpion++;
+                            if(p_data_board->Board[save_x][save_y].owner == courant_player)
+                            {
+                                //On incrémente le compteur
+                                cntjoueur++;
+                            } 
+                            else if(p_data_board->Board[save_x][save_y].owner != courant_player)
+                            {
+                                //On décrémente le compteur
+                                cntjoueur--;
+                            }
+                                
+                            //On ajoute au score cette nouvelle participation
+                            score += calcScore(cntpion,cntjoueur);
+                        }
+                        if(p_data_board->Board[save_x][save_y].P_array_neightbour[k].x != -1 && p_data_board->Board[save_x][save_y].P_array_neightbour[k].y != -1)
+                        {
+                            x_inter = p_data_board->Board[save_x][save_y].P_array_neightbour[k].x;
+                            y_inter = p_data_board->Board[save_x][save_y].P_array_neightbour[k].y;
+                            save_x = x_inter;
+                            save_y = y_inter;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+            } 
+        }
+    }
+    
+    
+    
+    
+    
+    
+
+    //On parcourt chaque case du plateau et on parcour chaque direction sur un n-tuplet
+    //Parcour le plateau de jeu pour verifier si il y a un gagnant
+    /*for(int i = 0; i < X; i++)
     {
         for(int j = 0; j < Y; j++)
         {
@@ -282,7 +369,7 @@ int evalue(const P_data_board const p_data_board, int n_tuplet)
                 }
             } 
         }
-    }
+    }*/
     return score;
 }
 
