@@ -730,7 +730,7 @@ void play_turn(const P_data_board const p_data_board, const int n_tuplet)
                     //print_board_game(p_data_board);
 
                     //Appel fonction dermination coup IA
-                    calcIA(p_data_board, 3, n_tuplet, owner);//2 eme parametre = profondeur de l'arbre (Pour une map 10*10, 3 max car sinon sa prend plus de temps)
+                    calcIA(p_data_board, 7, n_tuplet, owner);//2 eme parametre = profondeur de l'arbre (Pour une map 10*10, 3 max car sinon sa prend plus de temps)
 
                     //On affiche le plateau de jeu
                     print_board_game(p_data_board);

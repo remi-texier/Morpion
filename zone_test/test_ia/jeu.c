@@ -455,28 +455,28 @@ void print_board_game(P_data_board const p_data_board)
     int compteur = 0;
 
     putchar('\n');
-    for (col = 0; col < Y; ++col)
+    for (col = 0; col < X; ++col)
         printf("  %d ", col);
 
     putchar('\n');
     putchar('+');
 
-    for (col = 1; col <= Y; ++col)
+    for (col = 1; col <= X; ++col)
         printf("---+");
 
     putchar('\n');
 
-    for (lgn = 0; lgn < X; ++lgn)
+    for (lgn = 0; lgn < Y; ++lgn)
     {
         putchar('|');
 
-        for (col = 0; col < Y; ++col)
+        for (col = 0; col < X; ++col)
             if (isalpha(p_data_board->Board[col][lgn].owner))
                 printf(" %c |", p_data_board->Board[col][lgn].owner);
             else
                 printf(" %c |", ' ');
         
-        if(compteur <= Y)
+        if(compteur <= X)
         {
             printf("  %d ", compteur);
             compteur++;
@@ -485,7 +485,7 @@ void print_board_game(P_data_board const p_data_board)
         putchar('\n');
         putchar('+');
 
-        for (col = 1; col <= Y; ++col)
+        for (col = 1; col <= X; ++col)
             printf("---+");
 
         putchar('\n');
@@ -730,7 +730,7 @@ void play_turn(const P_data_board const p_data_board, const int n_tuplet)
                     //print_board_game(p_data_board);
 
                     //Appel fonction dermination coup IA
-                    calcIA(p_data_board, 4, n_tuplet, owner);
+                    calcIA(p_data_board, 3, n_tuplet, owner);
 
                     //On affiche le plateau de jeu
                     print_board_game(p_data_board);

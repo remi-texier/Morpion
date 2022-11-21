@@ -6,6 +6,8 @@
 #define MINEVAL -100000;
 #define MAXEVAL 100000;
 
+void coup_ordi(P_data_board const P_data, int prof, int n_tuple, char player);
+int minimax(P_data_board const P_data, int prof, int n_tuple, bool Est_Max);
 
 //--------------------------------------------IMPORTANT-------------------------------------------//
 //L ia est en cours de developpement donc sont niveau est definit à facile

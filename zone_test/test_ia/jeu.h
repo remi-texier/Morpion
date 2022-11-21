@@ -17,8 +17,9 @@
 #include <stdbool.h>
 
 //Macro pour predefinir la taille du tableau qui se fera avec le preprocesseur
-#define X 10
-#define Y 10
+// Affichage inverser donc X et Y inververser pour l affichage
+#define X 7
+#define Y 6
 
 //Structure qui represente une case voisine
 // [0] -> case du haut à 12 heures et on fait le tour dans le sens des aiguilles d'une montre jusqu'à [_]
