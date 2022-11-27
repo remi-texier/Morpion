@@ -17,7 +17,6 @@
 #include <stdbool.h>
 
 //Macro pour predefinir la taille du tableau qui se fera avec le preprocesseur
-// Affichage inverser donc X et Y inververser pour l affichage
 #define X 7
 #define Y 6
 

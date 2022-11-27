@@ -196,7 +196,33 @@ int calcScore(int cntpion, int cntjoueur)
 
     return 0;      
 }
-
+unsigned char get_symbol(const P_data_board databoard) {
+    return p_data_board->Board[save_x][save_y].owner;
+}
+int note_nuplet(const P_data_board databoard, int taille, const int k) {
+    // on initialise la variable du premier symbole trouvé
+    int score = 1; //quintuplet vide vaut 1
+    unsigned char symbol;
+    //on entre dans la boucle de parcour et de comparaison
+    for (int i = 0; i < taille; i++) {
+        //Si symbol n'est pas encore initialisé et que la case x y n'est pas vide on assigne l'owner à symbol
+        if (symbol == NULL && get_symbol(databoard) != NULL) {
+            symbol = get_symbol(databoard);
+            score = 5;
+        }
+        //si la case courante est différente de symbol ET n'est pas vide, alors le quintuplet vaut 0
+        if (symbol != get_symbol(databoard) && get_symbol(databoard) != NULL) {
+            return 0;
+        }
+        //sinon on multiplie par 10 le score pour bien ecarter les différentes tailles de quintuplets
+        else {
+            score = score * 10;
+        }
+        
+        //if (p_data_board->Board[save_x][save_y].P_array_neightbour[k]
+    }
+}
+note ligne{} 
 int evalue(const P_data_board const p_data_board, int n_tuplet)
 {
     int score = 0;
@@ -219,6 +245,13 @@ int evalue(const P_data_board const p_data_board, int n_tuplet)
     }
     else if(check_n_tuplet(p_data_board, n_tuplet) == '0')
     {
+        
+        
+        
+        
+        
+        
+        
         // Deuxieme phase
         int save_x = 0;
         int save_y = 0;
@@ -263,7 +296,7 @@ int evalue(const P_data_board const p_data_board, int n_tuplet)
                                 //On ajoute au score cette nouvelle participation
                                 score += calcScore(cntpion,cntjoueur);
                             }
-                            if(p_data_board->Board[save_x][save_y].P_array_neightbour[k].x != -1 && p_data_board->Board[save_x][save_y].P_array_neightbour[k].y != -1)
+                            if(p_data_board->Board[save_x][save_y].P_array_neightbour[k].x != -1 && p_data_board->Board[save_x][save_y].P_array_neightbour[k].y != -1)//à utiliser
                             {
                                 x_inter = p_data_board->Board[save_x][save_y].P_array_neightbour[k].x;
                                 y_inter = p_data_board->Board[save_x][save_y].P_array_neightbour[k].y;
@@ -280,7 +313,7 @@ int evalue(const P_data_board const p_data_board, int n_tuplet)
             }
         }
         return score;
-    }
+    }*/
     else
     {
         //printf("\nIA a perdu\n");
@@ -370,3 +403,9 @@ int comptePions(P_data_board p_data_board)
 {
     return ((X * Y) - p_data_board->nb_free);
 }
+
+// fonction d'evaluation : retourne le score d'une case
+// fonction choix : prend la meilleure case
+// fonction somme : additionne tous les scores des cases pour un plateau 
+
+//alpha beta : parcour les possibilité de jeu
