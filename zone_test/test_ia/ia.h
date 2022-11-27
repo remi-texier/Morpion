@@ -46,6 +46,8 @@ int calcMin(P_data_board p_data_board, int prof, int n_tuple, int alpha, int bet
 */
 int calcMax(P_data_board p_data_board, int prof, int n_tuple, int alpha, int beta);
 
+unsigned char get_symbol(const P_data_board databoard);
+
 
 /*
     * Fonction qui permet de calculer le score d'une case
